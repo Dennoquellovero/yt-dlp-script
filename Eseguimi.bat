@@ -8,7 +8,7 @@ set "answer=%answer:s=S%"
 set "answer=%answer:n=N%"
 
 if "%answer%"=="S" (
-	set "command=yt-dlp -f bestvideo+bestaudio/best --embed-metadata --embed-thumbnail --convert-thumbnails jpg --ppa "ffmpeg: -c:v mjpeg -vf crop=\"'if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)'\"" -o ".\Video\%%(title^)s.%%(ext^)s""
+	set "command=yt-dlp -f bestvideo+bestaudio/best --cookies cookies.txt --embed-metadata --embed-thumbnail -o ".\Video\%%(title^)s.%%(ext^)s""
 
 	echo Sia il video che l'audio verranno scaricati
 
@@ -16,7 +16,7 @@ if "%answer%"=="S" (
 
 	if "%answer%"=="N" (
 
-		set "command=yt-dlp -f bestaudio --extract-audio --embed-metadata --embed-thumbnail --add-metadata --convert-thumbnails jpg --ppa "ffmpeg: -c:v mjpeg -vf crop=\"'if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)'\"" -o ".\Audio\%%(title^)s.%%(ext^)s" --audio-format"
+		set "command=yt-dlp -f bestaudio --extract-audio --embed-metadata --embed-thumbnail --convert-thumbnails jpg --ppa "ffmpeg: -c:v mjpeg -vf crop=\"'if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)'\"" -o ".\Audio\%%(title^)s.%%(ext^)s" --audio-format"
 
 		echo Solo l'audio verra' scaricato.
 	
