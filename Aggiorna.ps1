@@ -73,7 +73,9 @@ if ($answerUpdateDepen -in("s", "S")) {
 		Remove-Item ".\7zr.exe" -Force
     }
 
-    Invoke-WebRequest -Uri "https://www.7-zip.org/a/7zr.exe" -OutFile ".\7zr.exe"
+	$ProgressPreference = 'SilentlyContinue'
+
+	Invoke-WebRequest -Uri "https://www.7-zip.org/a/7zr.exe" -OutFile ".\7zr.exe"
 
 	Invoke-WebRequest -Uri "https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-essentials.7z" -OutFile ".\ffmpeg-git-essentials.7z"
 
