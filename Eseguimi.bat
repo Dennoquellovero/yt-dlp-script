@@ -1,10 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
 
-echo Aggiorno yt-dlp.exe
-echo -------------------------- 
-yt-dlp -U
-
 echo --------------------------
 set /p answer="Vuoi scaricare anche il video? (S/N): "
 echo --------------------------
