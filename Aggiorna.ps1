@@ -1,8 +1,9 @@
 $ProgressPreference = 'SilentlyContinue'
 
+Clear-Host 
 
 do {
- 		$answerUpdateProg = Read-Host "Vuoi scaricare/aggiornare yt-dlp-script? Ciò sovrascriverà i relativi file. (S/N)"
+ 		$answerUpdateProg = Read-Host "Vuoi scaricare/aggiornare yt-dlp-script? CiÃ² sovrascriverÃ  i relativi file. (S/N)"
 	} while ($answerUpdateProg -notin @("s", "n", "S", "N"))
 
 if ($answerUpdateProg -in("S", "s")) {
@@ -23,7 +24,7 @@ if ($answerUpdateProg -in("S", "s")) {
 } else {
 
 	Write-Host "-----------------------------"
-	Write-Host "yt-dlp-script non verrà  scaricato/aggiornato."
+	Write-Host "yt-dlp-script non verrÃ Â  scaricato/aggiornato."
 }
 
 Write-Host "-----------------------------"
