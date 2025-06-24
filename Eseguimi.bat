@@ -24,15 +24,19 @@ if "%answer%"=="S" (
 
 	if "%answer%"=="N" (
 
-		set "command=yt-dlp -f bestaudio --extract-audio --embed-metadata --embed-thumbnail --convert-thumbnails jpg --ppa "ffmpeg: -c:v mjpeg -vf crop=\"'if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)'\"" -o ".\Audio\%%(title^)s.%%(ext^)s" --audio-format"
+		set "command=yt-dlp -f bestaudio --extract-audio --embed-metadata --embed-thumbnail --convert-thumbnails jpg --ppa "ffmpeg: -c:v mjpeg -vf crop=\"'if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)'\"" -o ".\Audio\%%(title^)s.%%(ext^)s""
 
 		echo Solo l'audio verra' scaricato.
 		echo --------------------------
 		
-		set /p format="Scegli un formato audio (ES: flac, m4a, ogg): "
+		set /p format="Vuoi uno specifico formato audio? (ES: flac, m4a, opus. Lascia vuoto per il formato originale): "
 		echo --------------------------
 
-		set "command=!command! !format!"
+		if NOT "!format!" == "" (
+
+			set "command=!command! --audio-format !format!"
+		)
+
 
 	) else (
 		echo --------------------------
