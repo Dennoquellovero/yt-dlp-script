@@ -5,8 +5,6 @@ do {
  		$answerUpdateProg = Read-Host "Vuoi scaricare/aggiornare yt-dlp-script? Ciò sovrascriverà i relativi file. (S/N)"
 	} while ($answerUpdateProg -notin @("s", "n", "S", "N"))
 
-Write-Host "-----------------------------"
-
 if ($answerUpdateProg -in("S", "s")) {
 
     Write-Host "-----------------------------"
@@ -18,7 +16,7 @@ if ($answerUpdateProg -in("S", "s")) {
 		Remove-Item "Eseguimi.bat" -Force
 	}
 
-	Invoke-WebRequest -Uri "https://github.com/Dennoquellovero/yt-dlp-script/archive/refs/heads/main.zip" -OutFile "Eseguimi.bat"
+	Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Dennoquellovero/yt-dlp-script/refs/heads/main/Eseguimi.bat" -OutFile "Eseguimi.bat"
 
 	Write-Host "-----------------------------"
 	Write-Host "yt-dlp-script installato."
@@ -62,26 +60,39 @@ if ($answerUpdateDepen -in("s", "S")) {
 		Remove-Item ".\ffprobe.exe" -Force
 	}
 
-	if (Test-Path -Path ".\ffmpeg-master-latest-win64-gpl-shared.zip"){
-		Remove-Item ".\ffmpeg-master-latest-win64-gpl-shared.zip" -Force
+	if (Test-Path -Path ".\ffmpeg-git-essentials.7z"){
+		Remove-Item ".\ffmpeg-git-essentials.7z" -Force
 	}
 
-	Invoke-WebRequest -Uri "https://github.com/BtbN/FFmpeg-Builds/releases/latest/download/ffmpeg-master-latest-win64-gpl-shared.zip" -OutFile ".\ffmpeg-master-latest-win64-gpl-shared.zip"
+    if (Test-Path -Path ".\ffmpeg-git-essentials"){
+		Remove-Item ".\ffmpeg-git-essentials" -Force -Recurse
+    }
 
-	Expand-Archive -Path ".\ffmpeg-master-latest-win64-gpl-shared.zip" -DestinationPath ".\" -Force
+    if (Test-Path -Path ".\7zr.exe"){
+		Remove-Item ".\7zr.exe" -Force
+    }
 
-	Move-Item -Path ".\ffmpeg-master-latest-win64-gpl-shared\bin\ffmpeg.exe" -Destination ".\ffmpeg.exe" 
+    Invoke-WebRequest -Uri "https://www.7-zip.org/a/7zr.exe" -OutFile ".\7zr.exe"
 
-	Move-Item -Path ".\ffmpeg-master-latest-win64-gpl-shared\bin\ffprobe.exe" -Destination ".\ffprobe.exe" 
+	Invoke-WebRequest -Uri "https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-essentials.7z" -OutFile ".\ffmpeg-git-essentials.7z"
 
-    if (Test-Path -Path ".\ffmpeg-master-latest-win64-gpl-shared.zip"){
-		Remove-Item ".\ffmpeg-master-latest-win64-gpl-shared.zip" -Force
+	& ".\7zr.exe" x ".\ffmpeg-git-essentials.7z" -o".\ffmpeg-git-essentials" -y > $null 2>&1
+
+	Move-Item -Path ".\ffmpeg-git-essentials\ffmpeg*\bin\ffmpeg.exe" -Destination ".\ffmpeg.exe" 
+
+	Move-Item -Path ".\ffmpeg-git-essentials\ffmpeg*\bin\ffprobe.exe" -Destination ".\ffprobe.exe" 
+
+    if (Test-Path -Path ".\ffmpeg-git-essentials.7z"){
+		Remove-Item ".\ffmpeg-git-essentials.7z" -Force
 	}
 
-    if (Test-Path -Path ".\ffmpeg-master-latest-win64-gpl-shared"){
-		Remove-Item ".\ffmpeg-master-latest-win64-gpl-shared" -Force -Recurse
+    if (Test-Path -Path ".\ffmpeg-git-essentials"){
+		Remove-Item ".\ffmpeg-git-essentials" -Force -Recurse
 	}
 
+    if (Test-Path -Path ".\7zr.exe"){
+		Remove-Item ".\7zr.exe" -Force
+	}
 
     Write-Host "ffmpeg.exe e ffprobe.exe installati"
 	Write-Host "-----------------------------"
@@ -95,5 +106,5 @@ if ($answerUpdateDepen -in("s", "S")) {
 
 Write-Host "Finito."
 
-Read-Host "Premi Invio per uscire."
+Read-Host "Premi Invio per uscire"
 
