@@ -1,7 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
 
-echo --------------------------
 set /p answer="Vuoi scaricare anche il video? (S/N): "
 echo --------------------------
 
